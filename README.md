@@ -1,10 +1,27 @@
 # caddy-anubis
 
-caddy-anubis is a plugin that loads anubis for requests in order to slow down AI and Scraper traffic from destroying infrastucture.
+# Usage on nixos
 
-I consider this current implementation more of a Proof-of-Concept. I am not sure how stable or well it works. This is my first Caddy plugin. I do not currently recommend it for production usage.
+```nix
+  services.caddy = {
+    enable = true;
+    package = pkgs.caddy.withPlugins {
+      plugins = [
+        "github.com/BatteredBunny/caddy-anubis@v1.0.0"
+      ];
+      hash = "sha256-RZgkwdKAeWTUg9iQwR9PSVmWx9v1bLVLR+dfqSpuvv8=";
+    };
 
-If you have experience with Caddy plugins, or see obvious issues in my code, feel free to open PRs or reach out to me.
+    virtualHosts."example.com".extraConfig = ''
+      request_header +X-Real-IP {remote_host}
+      request_header +X-Forwarded-For {remote_host}
+
+      anubis
+
+      reverse_proxy :8080
+    '';
+  };
+```
 
 ## Known Issues
 
