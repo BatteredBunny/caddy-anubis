@@ -1,6 +1,36 @@
 # caddy-anubis
 
-# Usage on nixos
+## Known Issues
+
+- One major issue is the very first request after a Caddy start or restart, takes like 5 seconds till anubis kicks in. All subsequent requests, even after clearing cookies, are near instant.
+
+## Current usage
+
+Just add an `anubis` to your caddyfile in the block you want the protection. currently I have not seen it work properly inside a `route` or `handler` block. But it works outside of those.
+
+There is an optional `target` field you can set if you want to force the redirect elsewhere. It does a 302 redirect.
+
+Example (also check the caddyfile in this repo, it is used for testing):
+
+```caddy
+:80 {
+  anubis
+
+  # or
+
+  anubis {
+    target https://qwant.com
+  }
+}
+```
+
+## Testing locally
+
+```bash
+xcaddy -- run --config Caddyfile
+```
+
+## Usage on nixos
 
 ```nix
   services.caddy = {
@@ -21,31 +51,6 @@
       reverse_proxy :8080
     '';
   };
-```
-
-## Known Issues
-
-- One major issue is the very first request after a Caddy start or restart, takes like 5 seconds till anubis kicks in. All subsequent requests, even after clearing cookies, are near instant.
-
-## Current usage
-
-Just add an `anubis` to your caddyfile in the block you want the protection. currently I have not seen it work properly inside a `route` or `handler` block. But it works outside of those.
-
-There is an optional `target` field you can set if you want to force the redirect elsewhere. It does a 302 redirect.
-
-Example (also check the caddyfile in this repo, it is used for testing):
-
-```caddy
-
-:80 {
-  anubis
-
-  # or 
-
-  anubis {
-    target https://qwant.com
-  }
-}
 ```
 
 ## Credits
