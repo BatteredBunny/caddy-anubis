@@ -37,7 +37,7 @@ xcaddy -- run --config Caddyfile
     enable = true;
     package = pkgs.caddy.withPlugins {
       plugins = [
-        "github.com/BatteredBunny/caddy-anubis@v1.0.0"
+        "github.com/BatteredBunny/caddy-anubis@v1.0.3"
       ];
       hash = "sha256-RZgkwdKAeWTUg9iQwR9PSVmWx9v1bLVLR+dfqSpuvv8=";
     };
