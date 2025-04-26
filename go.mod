@@ -3,7 +3,7 @@ module github.com/BatteredBunny/caddy-anubis
 go 1.24.2
 
 require (
-	github.com/TecharoHQ/anubis v1.16.0
+	github.com/TecharoHQ/anubis v1.15.2
 	github.com/caddyserver/caddy/v2 v2.9.1
 	go.uber.org/zap v1.27.0
 )
