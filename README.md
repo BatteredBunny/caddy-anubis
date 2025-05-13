@@ -55,4 +55,4 @@ xcaddy -- run --config Caddyfile
 
 ## Credits
 
-- [anubis](github.com/TecharoHQ/anubis) - the project that started all of this.
+- [anubis](https://github.com/TecharoHQ/anubis) - the project that started all of this.
